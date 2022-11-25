@@ -1,6 +1,22 @@
+using System.Reflection;
+using AnonymousChat.Application;
+using AnonymousChat.Application.Common.Mappings;
+using AnonymousChat.Application.Interfaces;
+using AnonymousChat.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddRazorRuntimeCompilation();
+
+builder.Services.AddApplication();
+builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IAnonChatDbContext).Assembly));
+});
 
 var app = builder.Build();
 
@@ -15,6 +31,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
