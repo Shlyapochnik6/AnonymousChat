@@ -2,7 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="flex-container">
+    <form class="flex-item">
+        <div class="input-item">
+            <div class="item form-floating mb-3 w-50">
+                <input type="text" class="form-control" id="name-input" placeholder="name@example.com">
+                <label for="name-input">Name</label>
+            </div>
+        </div>
+        <div class="item"><button type="button" class="btn btn-outline-primary btn-lg">Submit</button></div>
+    </form>
+    
 </div>
+
