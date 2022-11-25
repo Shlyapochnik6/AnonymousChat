@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousChat.MVC", "AnonymousChat.MVC\AnonymousChat.MVC.csproj", "{8A4A9259-6C7A-4E13-86F0-78EFC6A76F45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{387D50A6-2CBD-41F2-816D-8F4070F118EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{22B65AD9-B9AD-42F8-A2CC-018CDEA4104C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{641A0101-35AE-4469-8BDB-D8D25CF8D7DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousChat.Domain", "AnonymousChat.Domain\AnonymousChat.Domain.csproj", "{03F199FB-0332-486C-B5CC-6762953600C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousChat.Application", "AnonymousChat.Application\AnonymousChat.Application.csproj", "{3660E98F-06E4-4275-BCF5-62A2EF961465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousChat.Persistence", "AnonymousChat.Persistence\AnonymousChat.Persistence.csproj", "{C3202FE6-FFEA-4A8D-B3B7-AC94E536A9F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A4A9259-6C7A-4E13-86F0-78EFC6A76F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4A9259-6C7A-4E13-86F0-78EFC6A76F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4A9259-6C7A-4E13-86F0-78EFC6A76F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4A9259-6C7A-4E13-86F0-78EFC6A76F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F199FB-0332-486C-B5CC-6762953600C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F199FB-0332-486C-B5CC-6762953600C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F199FB-0332-486C-B5CC-6762953600C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F199FB-0332-486C-B5CC-6762953600C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3660E98F-06E4-4275-BCF5-62A2EF961465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3660E98F-06E4-4275-BCF5-62A2EF961465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3660E98F-06E4-4275-BCF5-62A2EF961465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3660E98F-06E4-4275-BCF5-62A2EF961465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3202FE6-FFEA-4A8D-B3B7-AC94E536A9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3202FE6-FFEA-4A8D-B3B7-AC94E536A9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3202FE6-FFEA-4A8D-B3B7-AC94E536A9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3202FE6-FFEA-4A8D-B3B7-AC94E536A9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03F199FB-0332-486C-B5CC-6762953600C2} = {387D50A6-2CBD-41F2-816D-8F4070F118EB}
+		{3660E98F-06E4-4275-BCF5-62A2EF961465} = {387D50A6-2CBD-41F2-816D-8F4070F118EB}
+		{8A4A9259-6C7A-4E13-86F0-78EFC6A76F45} = {641A0101-35AE-4469-8BDB-D8D25CF8D7DF}
+		{C3202FE6-FFEA-4A8D-B3B7-AC94E536A9F8} = {22B65AD9-B9AD-42F8-A2CC-018CDEA4104C}
+	EndGlobalSection
+EndGlobal
