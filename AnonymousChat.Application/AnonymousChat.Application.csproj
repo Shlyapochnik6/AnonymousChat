@@ -21,4 +21,8 @@
       <ProjectReference Include="..\AnonymousChat.Domain\AnonymousChat.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="CQs\User\Queries" />
+    </ItemGroup>
+
 </Project>
