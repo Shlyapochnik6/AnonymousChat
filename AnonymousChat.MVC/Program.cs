@@ -1,16 +1,30 @@
+using System.Net;
 using System.Reflection;
 using AnonymousChat.Application;
 using AnonymousChat.Application.Common.Mappings;
 using AnonymousChat.Application.Interfaces;
 using AnonymousChat.Persistence;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+        options.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
+});
+
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/Login/Index");
+    });
 
 builder.Services.AddAutoMapper(config =>
 {
@@ -36,6 +50,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
