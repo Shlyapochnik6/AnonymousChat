@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="CQs\Message\Queries" />
       <Folder Include="CQs\User\Queries" />
     </ItemGroup>
 

@@ -1,8 +1,9 @@
-﻿namespace AnonymousChat.Domain;
+﻿using MediatR;
 
-public class Message
+namespace AnonymousChat.Application.CQs.Message.Commands;
+
+public class CreateMessageCommand : IRequest<MessageDto>
 {
-    public long Id { get; set; }
     public string Author { get; set; }
     
     public string Recipient { get; set; }
@@ -10,8 +11,4 @@ public class Message
     public string Header { get; set; }
     
     public string Body { get; set; }
-    
-    public DateTime DateSend { get; set; }
-    
-    public User? User { get; set; }
 }
