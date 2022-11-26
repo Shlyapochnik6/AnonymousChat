@@ -3,6 +3,7 @@ using AnonymousChat.Application;
 using AnonymousChat.Application.Common.Mappings;
 using AnonymousChat.Application.Interfaces;
 using AnonymousChat.Persistence;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,12 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/Login/Index");
+    });
 
 builder.Services.AddAutoMapper(config =>
 {
