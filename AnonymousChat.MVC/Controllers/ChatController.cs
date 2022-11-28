@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using System.Security.Claims;
+using AnonymousChat.Application.CQs.Message.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +17,12 @@ public class ChatController : Controller
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var userName = User.FindFirst(ClaimTypes.Name)!.Value;
+        var query = new GetListMessagesQuery() { Name = userName };
+        var result = await _mediator.Send(query);
+        var messages = result.Messages.ToList();
+        return View(messages);
     }
 }
