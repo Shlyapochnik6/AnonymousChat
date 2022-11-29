@@ -11,25 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-        options.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
-});
+builder.Services.AddSignalR();
 
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = new PathString("/Login/Index");
-    });
+    .AddCookie(options => { options.LoginPath = "/Login/Index"; });
 
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
     config.AddProfile(new AssemblyMappingProfile(typeof(IAnonChatDbContext).Assembly));
+});
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+        options.Listen(IPAddress.Any, Convert.ToInt32(Environment.GetEnvironmentVariable("PORT")));
 });
 
 var app = builder.Build();
@@ -47,6 +46,11 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/ws");
+});
 
 app.MapControllerRoute(
     name: "default",

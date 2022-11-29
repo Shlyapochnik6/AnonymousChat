@@ -32,7 +32,6 @@ public class LoginController : Controller
         var identity = await _mediator.Send(command);
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
             new ClaimsPrincipal(identity));
-        //change the path
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Chat");
     }
 }

@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<AnonymousChat.Domain.Message>
+
+<button type="button" class="btn btn-outline-primary btn-lg flex-btn-mes" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Create Message
+</button>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Create Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="err-div"><span id="err-span"></span></div>
+          <form autocomplete="off" action="" class="flex-item">
+            <div class="row modal-input">
+              <div class="form-group w-75 autocomplete">
+                <label for="input-recipient">Recipient</label>
+                <input required="required" type="text" class="form-control" id="input-recipient" placeholder="Recipient">
+              </div>
+            </div>
+            <div class="row modal-input">
+              <div class="form-group w-75">
+                <label for="input-header">Header</label>
+                <input required="required" type="text" class="form-control" id="input-header" placeholder="Header">
+              </div>
+            </div>
+            <div class="row modal-input">
+              <div class="form-group w-75">
+                <label for="textarea-body">Body</label>
+                <textarea required="required" class="form-control" id="textarea-body" placeholder="Body"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btn-send">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="fff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="row">
+              <div class="row">
+                <h2 class="modal-title fs-4 body-text" id="modal-author">Author:</h2>
+              </div>
+              <div class="row">
+                <h2 class="modal-title fs-6 body-text" id="modal-header">Header:</h2>
+              </div>
+              <div class="row">
+                <h2 class="modal-title fs-6 body-text" id="modal-date">DateSend:</h2>
+              </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <div class="modal-body fs-6 body-text" id="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+<div class="all-mes">Messages</div>
+<div class="mes-container">
+  @foreach (var message in Model)
+  {
+    <div class="row message" onclick="openMes(this);removeNoticeMessage(this)" data-bs-toggle="modal" data-bs-target="#fff">
+      <div class="row mes-header">Header: @message.Header</div>
+      <div class="row mes-author">Author: @message.Author</div>
+      <div class="row mes-date">DateSend: @message.DateSend.ToString("MM.dd.yyyy H:mm")</div>
+      <div class="row mes-body">
+        @message.Body
+      </div>
+    </div>
+  }
+</div>
+
+<script src="~/lib/signalr.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

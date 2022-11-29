@@ -17,7 +17,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, ClaimsI
     public async Task<ClaimsIdentity> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _dbContext.Users
-            .FirstOrDefaultAsync(u => u.Name == request.Name, cancellationToken);
+            .FirstOrDefaultAsync(u => u.Name == request.Name, cancellationToken: cancellationToken); 
         if (user == null)
         {
             user = new Domain.User()
@@ -29,10 +29,10 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, ClaimsI
         }
         var claims = new List<Claim>
         {
-            new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name)
+            new(ClaimsIdentity.DefaultNameClaimType, user.Name)
         };
-        var claimsIdentity = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-            ClaimsIdentity.DefaultRoleClaimType);
+        var claimsIdentity = new ClaimsIdentity(claims, "ApplicationCookie",
+            ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
         return claimsIdentity;
     }
 }
