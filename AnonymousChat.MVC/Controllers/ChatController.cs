@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using AnonymousChat.Application.CQs.Message.Queries;
+using AnonymousChat.Application.CQs.User.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,5 +25,14 @@ public class ChatController : Controller
         var result = await _mediator.Send(query);
         var messages = result.Messages.ToList();
         return View(messages);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> GetNames()
+    {
+        var query = new GetListUsersQuery();
+        var result = await _mediator.Send(query);
+        var names = result.Names.ToList();
+        return Ok(names);
     }
 }
